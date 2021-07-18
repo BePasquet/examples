@@ -61,11 +61,6 @@ export const deleteProductFail = createAction(
   props<{ payload: string }>()
 );
 
-export const setSelectedProductId = createAction(
-  '[Products] Set Selected Product Id',
-  props<{ payload: { productId: string } }>()
-);
-
 export type ProductActions = ReturnType<
   | typeof getProducts
   | typeof getProductsSuccess
@@ -79,5 +74,4 @@ export type ProductActions = ReturnType<
   | typeof deleteProduct
   | typeof deleteProductSuccess
   | typeof deleteProductFail
-  | typeof setSelectedProductId
 >;

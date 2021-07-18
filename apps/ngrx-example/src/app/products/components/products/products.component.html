@@ -12,19 +12,11 @@
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="createUpdateClick$.next({ productId: '' })"
-    >
+    <button mat-raised-button color="primary" (click)="upsertProduct('')">
       <mat-icon>add</mat-icon>
     </button>
 
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="deleteClick$.next({ productId: '' })"
-    >
+    <button mat-raised-button color="primary" (click)="deleteProduct('')">
       <mat-icon>remove</mat-icon>
     </button>
   </div>

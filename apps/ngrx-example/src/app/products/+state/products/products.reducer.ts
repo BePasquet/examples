@@ -11,7 +11,6 @@ import {
   getProducts,
   getProductsFail,
   getProductsSuccess,
-  setSelectedProductId,
   updateProduct,
   updateProductFail,
   updateProductSuccess,
@@ -20,7 +19,6 @@ import {
 export const PRODUCTS_STATE_KEY = 'products';
 
 export interface ProductsState extends EntityState<Product> {
-  selectedId: string;
   loading: boolean;
   loaded: boolean;
   error: string;
@@ -33,7 +31,6 @@ export interface ProductsPartialState {
 export const productsAdapter = createEntityAdapter<Product>();
 
 export const productsInitialState = productsAdapter.getInitialState({
-  selectedId: '',
   loading: false,
   loaded: false,
   error: '',
@@ -89,9 +86,5 @@ export const productsReducer = createReducer(
       loading: false,
       error: '',
     })
-  ),
-  on(setSelectedProductId, (state, { payload: { productId } }) => ({
-    ...state,
-    selectedId: productId,
-  }))
+  )
 );

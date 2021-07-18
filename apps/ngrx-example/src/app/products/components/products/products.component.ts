@@ -6,9 +6,8 @@ import {
   select,
   Store,
 } from '@ngrx/store';
-import { merge, Subject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import {
-  concatMap,
   debounceTime,
   distinctUntilChanged,
   map,
@@ -21,7 +20,6 @@ import {
   selectProductsError,
   selectProductsLoaded,
   selectProductsLoading,
-  setSelectedProductId,
 } from '../../+state';
 import { ProductFilter } from '../../../data';
 
@@ -32,7 +30,8 @@ export const searchProducts = createAction(
 );
 
 export const openProductDialog = createAction(
-  '[Products Component] Open Product Dialog'
+  '[Products Component] Open Product Dialog',
+  props<{ payload: { productId: string } }>()
 );
 
 export const openConfirmationDialog = createAction(
@@ -57,44 +56,31 @@ export const selectProductsVM = createSelector(
 export class ProductsComponent implements OnDestroy {
   readonly state$ = this.store.pipe(select(selectProductsVM));
 
-  // Controls
   readonly searchInput$ = new Subject<string>();
-
-  readonly createUpdateClick$ = new Subject<{ productId: string }>();
-
-  readonly deleteClick$ = new Subject<{ productId: string }>();
 
   private readonly searchProducts$ = this.searchInput$.pipe(
     startWith(''),
     debounceTime(350),
     distinctUntilChanged(),
-    map((name) => searchProducts({ payload: { name } }))
+    map((name) => searchProducts({ payload: { name } })),
+    tap((action) => this.store.dispatch(action))
   );
-
-  private readonly showProductDialog$ = this.createUpdateClick$.pipe(
-    concatMap(({ productId }) => [
-      setSelectedProductId({ payload: { productId } }),
-      openProductDialog(),
-    ])
-  );
-
-  private readonly showConfirmationDialog$ = this.deleteClick$.pipe(
-    map(({ productId }) => openConfirmationDialog({ payload: { productId } }))
-  );
-
-  private readonly componentActions$ = merge(
-    this.searchProducts$,
-    this.showProductDialog$,
-    this.showConfirmationDialog$
-  ).pipe(tap((action) => this.store.dispatch(action)));
 
   private readonly subscriptions = new Subscription();
 
   constructor(private readonly store: Store<ProductsPartialState>) {
-    this.subscriptions.add(this.componentActions$.subscribe());
+    this.subscriptions.add(this.searchProducts$.subscribe());
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  upsertProduct(productId: string): void {
+    this.store.dispatch(openProductDialog({ payload: { productId } }));
+  }
+
+  deleteProduct(productId: string): void {
+    this.store.dispatch(openConfirmationDialog({ payload: { productId } }));
   }
 }

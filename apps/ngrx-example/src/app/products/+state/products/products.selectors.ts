@@ -31,14 +31,3 @@ export const selectProductsError = createSelector(
   selectProductsState,
   ({ error }) => error
 );
-
-export const selectSelectedProductId = createSelector(
-  selectProductsState,
-  ({ selectedId }) => selectedId
-);
-
-export const selectSelectedProduct = createSelector(
-  selectProductEntities,
-  selectSelectedProductId,
-  (entities, selectedId) => entities[selectedId] ?? null
-);
