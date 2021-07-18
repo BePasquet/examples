@@ -32,7 +32,12 @@ export interface ProductsPartialState {
 
 export const productsAdapter = createEntityAdapter<Product>();
 
-export const productsInitialState = productsAdapter.getInitialState();
+export const productsInitialState = productsAdapter.getInitialState({
+  selectedId: '',
+  loading: false,
+  loaded: false,
+  error: '',
+});
 
 export const productsReducer = createReducer(
   productsInitialState,

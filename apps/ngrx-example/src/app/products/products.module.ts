@@ -1,8 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ProductsEffect, productsReducer, PRODUCTS_STATE_KEY } from './+state';
+import { ProductsComponentEffect } from './components/products/products-component.effect';
 import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
@@ -14,9 +21,15 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(PRODUCTS_STATE_KEY, productsReducer),
-    EffectsModule.forFeature([ProductsEffect]),
+    EffectsModule.forFeature([ProductsEffect, ProductsComponentEffect]),
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   declarations: [ProductsComponent],
 })

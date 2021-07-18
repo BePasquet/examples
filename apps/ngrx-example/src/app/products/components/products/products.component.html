@@ -1,1 +1,35 @@
-Products
+<div>
+  <h1>Products</h1>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input
+        #searchInputRef
+        (input)="searchInput$.next(searchInputRef.value)"
+        matInput
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="createUpdateClick$.next({ productId: '' })"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="deleteClick$.next({ productId: '' })"
+    >
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    {{ state$ | async | json }}
+  </div>
+</div>
