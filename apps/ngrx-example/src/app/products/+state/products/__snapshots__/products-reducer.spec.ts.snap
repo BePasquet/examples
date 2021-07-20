@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Products Reducer createProduct Should set loading state to true and error to empty string 1`] = `
+Object {
+  "entities": Object {},
+  "error": "",
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+}
+`;
+
+exports[`Products Reducer createProductFail Should set loading to false and populate error 1`] = `
+Object {
+  "entities": Object {},
+  "error": "ERROR",
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+}
+`;
+
+exports[`Products Reducer createProductSuccess Should add a product to entities, set loading to false and error to empty string 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "1",
+      "images": Array [],
+      "name": "Whey Protein",
+      "price": 100,
+      "rating": 5,
+      "stock": 100,
+    },
+  },
+  "error": "",
+  "ids": Array [
+    "1",
+  ],
+  "loaded": false,
+  "loading": false,
+}
+`;
+
+exports[`Products Reducer deleteProduct Should set loading state to true and error to empty string 1`] = `
+Object {
+  "entities": Object {},
+  "error": "",
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+}
+`;
+
+exports[`Products Reducer deleteProductFail Should set loading to false and populate error 1`] = `
+Object {
+  "entities": Object {},
+  "error": "ERROR",
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+}
+`;
+
+exports[`Products Reducer deleteProductSuccess Should remove product from entities, set loading to false and error to empty string 1`] = `
+Object {
+  "entities": Object {
+    "2": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "2",
+      "images": Array [],
+      "name": "Fat Burner",
+      "price": 50,
+      "rating": 5,
+      "stock": 100,
+    },
+    "3": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "3",
+      "images": Array [],
+      "name": "Protein Bar",
+      "price": 10,
+      "rating": 5,
+      "stock": 100,
+    },
+  },
+  "error": "",
+  "ids": Array [
+    "2",
+    "3",
+  ],
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`Products Reducer getProductsFail Should set loading to false, loaded to false and populate error 1`] = `
+Object {
+  "entities": Object {},
+  "error": "ERROR",
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+}
+`;
+
+exports[`Products Reducer getProductsSuccess Should populate the state with products, loading to false, loaded to true, and error to an empty string 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "1",
+      "images": Array [],
+      "name": "Whey Protein",
+      "price": 100,
+      "rating": 5,
+      "stock": 100,
+    },
+    "2": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "2",
+      "images": Array [],
+      "name": "Fat Burner",
+      "price": 50,
+      "rating": 5,
+      "stock": 100,
+    },
+    "3": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "3",
+      "images": Array [],
+      "name": "Protein Bar",
+      "price": 10,
+      "rating": 5,
+      "stock": 100,
+    },
+  },
+  "error": "",
+  "ids": Array [
+    "1",
+    "2",
+    "3",
+  ],
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`Products Reducer updateProduct Should set loading state to true and error to empty string 1`] = `
+Object {
+  "entities": Object {},
+  "error": "",
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+}
+`;
+
+exports[`Products Reducer updateProductFail Should set loading to false and populate error 1`] = `
+Object {
+  "entities": Object {},
+  "error": "ERROR",
+  "ids": Array [],
+  "loaded": false,
+  "loading": false,
+}
+`;
+
+exports[`Products Reducer updateProductSuccess Should update a product from the entities, set loading to false, and error to empty string 1`] = `
+Object {
+  "entities": Object {
+    "1": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "1",
+      "images": Array [],
+      "name": "Pre Workout",
+      "price": 100,
+      "rating": 5,
+      "stock": 100,
+    },
+    "2": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "2",
+      "images": Array [],
+      "name": "Fat Burner",
+      "price": 50,
+      "rating": 5,
+      "stock": 100,
+    },
+    "3": Object {
+      "active": true,
+      "categoryId": "1",
+      "description": "lorem ipsum",
+      "discount": 0,
+      "id": "3",
+      "images": Array [],
+      "name": "Protein Bar",
+      "price": 10,
+      "rating": 5,
+      "stock": 100,
+    },
+  },
+  "error": "",
+  "ids": Array [
+    "1",
+    "2",
+    "3",
+  ],
+  "loaded": true,
+  "loading": false,
+}
+`;

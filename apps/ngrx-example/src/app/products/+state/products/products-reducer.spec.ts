@@ -1,5 +1,5 @@
 import { createAction } from '@ngrx/store';
-import { Product } from '../../../data';
+import { errorMessage, product, products } from '../../../test/test.data';
 import {
   createProduct,
   createProductFail,
@@ -15,23 +15,6 @@ import {
   updateProductSuccess,
 } from './products.actions';
 import { productsInitialState, productsReducer } from './products.reducer';
-
-const errorMessage = 'ERROR';
-
-const product: Product = {
-  id: '1',
-  name: 'Whey Protein',
-  description: 'lorem ipsum',
-  active: true,
-  categoryId: '1',
-  discount: 0,
-  images: [],
-  price: 100,
-  rating: 5,
-  stock: 100,
-};
-
-const products: Product[] = [product];
 
 describe('Products Reducer', () => {
   it('Should return initial state on an unknown action', () => {
@@ -68,28 +51,8 @@ describe('Products Reducer', () => {
     it('Should populate the state with products, loading to false, loaded to true, and error to an empty string', () => {
       const action = getProductsSuccess({ payload: products });
       const state = productsReducer(productsInitialState, action);
-      const expected = {
-        entities: {
-          1: {
-            id: '1',
-            name: 'Whey Protein',
-            description: 'lorem ipsum',
-            active: true,
-            categoryId: '1',
-            discount: 0,
-            images: [],
-            price: 100,
-            rating: 5,
-            stock: 100,
-          },
-        },
-        error: '',
-        ids: ['1'],
-        loaded: true,
-        loading: false,
-      };
 
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -97,15 +60,8 @@ describe('Products Reducer', () => {
     it('Should set loading to false, loaded to false and populate error', () => {
       const action = getProductsFail({ payload: errorMessage });
       const state = productsReducer(productsInitialState, action);
-      const expected = {
-        loading: false,
-        entities: {},
-        ids: [],
-        loaded: false,
-        error: errorMessage,
-      };
 
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -114,8 +70,8 @@ describe('Products Reducer', () => {
       const { id, ...payload } = product;
       const action = createProduct({ payload });
       const state = productsReducer(productsInitialState, action);
-      const expected = { ...productsInitialState, loading: true };
-      expect(state).toEqual(expected);
+
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -123,17 +79,8 @@ describe('Products Reducer', () => {
     it('Should add a product to entities, set loading to false and error to empty string', () => {
       const action = createProductSuccess({ payload: product });
       const state = productsReducer(productsInitialState, action);
-      const expected = {
-        entities: {
-          1: product,
-        },
-        ids: ['1'],
-        loaded: false,
-        loading: false,
-        error: '',
-      };
 
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -141,15 +88,8 @@ describe('Products Reducer', () => {
     it('Should set loading to false and populate error', () => {
       const action = createProductFail({ payload: errorMessage });
       const state = productsReducer(productsInitialState, action);
-      const expected = {
-        loading: false,
-        entities: {},
-        ids: [],
-        loaded: false,
-        error: errorMessage,
-      };
 
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -157,8 +97,8 @@ describe('Products Reducer', () => {
     it('Should set loading state to true and error to empty string', () => {
       const action = updateProduct({ payload: product });
       const state = productsReducer(productsInitialState, action);
-      const expected = { ...productsInitialState, loading: true };
-      expect(state).toEqual(expected);
+
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -176,28 +116,8 @@ describe('Products Reducer', () => {
       });
 
       const state = productsReducer(populatedState, action);
-      const expected = {
-        entities: {
-          '1': {
-            active: true,
-            categoryId: '1',
-            description: 'lorem ipsum',
-            discount: 0,
-            id: '1',
-            images: [],
-            name: 'Pre Workout',
-            price: 100,
-            rating: 5,
-            stock: 100,
-          },
-        },
-        error: '',
-        ids: ['1'],
-        loaded: true,
-        loading: false,
-      };
 
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -205,15 +125,8 @@ describe('Products Reducer', () => {
     it('Should set loading to false and populate error', () => {
       const action = updateProductFail({ payload: errorMessage });
       const state = productsReducer(productsInitialState, action);
-      const expected = {
-        loading: false,
-        entities: {},
-        ids: [],
-        loaded: false,
-        error: errorMessage,
-      };
 
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -221,8 +134,8 @@ describe('Products Reducer', () => {
     it('Should set loading state to true and error to empty string', () => {
       const action = deleteProduct({ payload: { productId: product.id } });
       const state = productsReducer(productsInitialState, action);
-      const expected = { ...productsInitialState, loading: true };
-      expect(state).toEqual(expected);
+
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -241,15 +154,7 @@ describe('Products Reducer', () => {
 
       const state = productsReducer(populatedState, action);
 
-      const expected = {
-        entities: {},
-        ids: [],
-        loading: false,
-        loaded: true,
-        error: '',
-      };
-
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 
@@ -257,15 +162,8 @@ describe('Products Reducer', () => {
     it('Should set loading to false and populate error', () => {
       const action = deleteProductFail({ payload: errorMessage });
       const state = productsReducer(productsInitialState, action);
-      const expected = {
-        loading: false,
-        entities: {},
-        ids: [],
-        loaded: false,
-        error: errorMessage,
-      };
 
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 });
