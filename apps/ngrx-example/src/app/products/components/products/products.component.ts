@@ -7,13 +7,7 @@ import {
   Store,
 } from '@ngrx/store';
 import { Subject, Subscription } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  startWith,
-  tap,
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import {
   ProductsPartialState,
   selectProducts,
@@ -34,9 +28,18 @@ export const openProductDialog = createAction(
   props<{ payload: { productId: string } }>()
 );
 
-export const openConfirmationDialog = createAction(
-  '[Products Component] Open Confirmation Dialog',
+export const openDeleteConfirmationDialog = createAction(
+  '[Products Component] Open Delete Confirmation Dialog',
   props<{ payload: { productId: string } }>()
+);
+
+export const acceptDeleteConfirmationDialog = createAction(
+  '[Products Component] Accept Delete Confirmation Dialog',
+  props<{ payload: { productId: string } }>()
+);
+
+export const cancelDeleteConfirmationDialog = createAction(
+  '[Products Component] Cancel Delete Confirmation Dialog'
 );
 
 // Selectors
@@ -59,7 +62,6 @@ export class ProductsComponent implements OnDestroy {
   readonly searchInput$ = new Subject<string>();
 
   private readonly searchProducts$ = this.searchInput$.pipe(
-    startWith(''),
     debounceTime(350),
     distinctUntilChanged(),
     map((name) => searchProducts({ payload: { name } })),
@@ -69,6 +71,7 @@ export class ProductsComponent implements OnDestroy {
   private readonly subscriptions = new Subscription();
 
   constructor(private readonly store: Store<ProductsPartialState>) {
+    this.store.dispatch(searchProducts({ payload: { name: '' } }));
     this.subscriptions.add(this.searchProducts$.subscribe());
   }
 
@@ -81,6 +84,8 @@ export class ProductsComponent implements OnDestroy {
   }
 
   deleteProduct(productId: string): void {
-    this.store.dispatch(openConfirmationDialog({ payload: { productId } }));
+    this.store.dispatch(
+      openDeleteConfirmationDialog({ payload: { productId } })
+    );
   }
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -8,7 +9,9 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '../shared/shared.module';
 import { ProductsEffect, productsReducer, PRODUCTS_STATE_KEY } from './+state';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductsComponentEffect } from './components/products/products-component.effect';
 import { ProductsComponent } from './components/products/products.component';
 
@@ -30,7 +33,9 @@ const routes: Routes = [
     MatTableModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
+    SharedModule,
   ],
-  declarations: [ProductsComponent],
+  declarations: [ProductsComponent, ProductFormComponent],
 })
 export class ProductsModule {}
