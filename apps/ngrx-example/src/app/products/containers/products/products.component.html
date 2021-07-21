@@ -1,0 +1,15 @@
+<div class="products-container" *ngIf="state$ | async as state">
+  <h1>Products</h1>
+
+  <div class="search-container">
+    <app-search-input (input)="searchInput$.next($event)"></app-search-input>
+  </div>
+
+  <div class="table-container">
+    <app-products-table
+      [products]="state.products"
+      (editProduct)="openProductDialog($event.id)"
+      (deleteProduct)="confirmDelete($event.id)"
+    ></app-products-table>
+  </div>
+</div>

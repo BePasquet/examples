@@ -10,14 +10,14 @@ import {
   selectProductEntities,
 } from '../../+state';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog.component';
-import { ProductFormComponent } from '../product-form/product-form.component';
+import { ProductFormComponent } from '../../components/product-form/product-form.component';
 import {
   acceptDeleteConfirmationDialog,
   cancelDeleteConfirmationDialog,
   openDeleteConfirmationDialog,
   openProductDialog,
   searchProducts,
-} from './products.component';
+} from './products.helper';
 
 @Injectable()
 export class ProductsComponentEffect {

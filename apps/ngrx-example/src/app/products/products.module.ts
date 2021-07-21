@@ -12,8 +12,9 @@ import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
 import { ProductsEffect, productsReducer, PRODUCTS_STATE_KEY } from './+state';
 import { ProductFormComponent } from './components/product-form/product-form.component';
-import { ProductsComponentEffect } from './components/products/products-component.effect';
-import { ProductsComponent } from './components/products/products.component';
+import { ProductsTableComponent } from './components/products-table/products-table.component';
+import { ProductsComponentEffect } from './containers/products/products-component.effect';
+import { ProductsComponent } from './containers/products/products.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
     MatDialogModule,
     SharedModule,
   ],
-  declarations: [ProductsComponent, ProductFormComponent],
+  declarations: [
+    ProductsComponent,
+    ProductsTableComponent,
+    ProductFormComponent,
+  ],
 })
 export class ProductsModule {}

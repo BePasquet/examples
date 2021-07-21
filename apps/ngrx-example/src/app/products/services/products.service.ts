@@ -13,7 +13,7 @@ export class ProductsService {
   constructor(private readonly http: HttpClient) {}
 
   getProducts(criteria: ProductFilter): Observable<Product[]> {
-    return this.http.post<Product[]>(this.endpoint, criteria);
+    return this.http.get<Product[]>(this.endpoint);
   }
 
   createProduct(product: Omit<Product, 'id'>): Observable<Product> {
