@@ -1,4 +1,5 @@
 import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 import {
   createAction,
   createReducer,
@@ -36,17 +37,22 @@ export const cancelDeleteConfirmationDialog = createAction(
 );
 
 export const searchProductByName = createAction(
-  '[Products Component] Search By Name',
+  '[Products Component] Search Products By Name',
   props<{ payload: string }>()
 );
 
-export const changeProductPage = createAction(
+export const changeProductsPage = createAction(
   '[Products Component] Change Product Page',
   props<{ payload: PageEvent }>()
 );
 
-export type SearchProductActions = ReturnType<
-  typeof searchProductByName | typeof changeProductPage
+export const sortProducts = createAction(
+  '[Products Component] Sort Products',
+  props<{ payload: Sort }>()
+);
+
+export type ProductComponentEvents = ReturnType<
+  typeof searchProductByName | typeof changeProductsPage | typeof sortProducts
 >;
 
 // Selectors
@@ -69,6 +75,7 @@ export const productsFilterInitialState: ProductFilter = {
   name: '',
   limit: 10,
   offset: 0,
+  sort: { key: 'name', direction: 'asc' },
 };
 
 export const productsFilterReducer = createReducer(
@@ -78,9 +85,14 @@ export const productsFilterReducer = createReducer(
     name: payload,
     offset: 0,
   })),
-  on(changeProductPage, (state, { payload: { pageIndex, pageSize } }) => ({
+  on(changeProductsPage, (state, { payload: { pageIndex, pageSize } }) => ({
     ...state,
     limit: pageSize,
     offset: pageIndex * pageSize,
+  })),
+  on(sortProducts, (state, { payload: { active, direction } }) => ({
+    ...state,
+    offset: 0,
+    sort: { key: active, direction },
   }))
 );

@@ -14,6 +14,7 @@ export class ProductsService {
   constructor(private readonly http: HttpClient) {}
 
   getProducts(filter: ProductFilter): Observable<EntitiesWithTotal<Product>> {
+    // necessary for json-server
     const query = this.buildGetProductQuery(filter);
     return this.http.get<Product[]>(query, { observe: 'response' }).pipe(
       map((response) => ({
@@ -35,8 +36,18 @@ export class ProductsService {
     return this.http.delete<void>(`${this.endpoint}/${id}`);
   }
 
-  private buildGetProductQuery({ name, limit, offset }: ProductFilter): string {
-    const query = `${this.endpoint}?_start=${offset}&_limit=${limit}`;
-    return !!name ? `${query}&q=${name}` : query;
+  private buildGetProductQuery({
+    name,
+    limit,
+    offset,
+    sort,
+  }: ProductFilter): string {
+    const basQuery = `${this.endpoint}?_start=${offset}&_limit=${limit}`;
+    const sortQuery = !!sort
+      ? `&_sort=${sort.key}&_order=${sort.direction}`
+      : '';
+    const textQuery = !!name ? `&q=${name}` : '';
+
+    return `${basQuery}${sortQuery}${textQuery}`;
   }
 }

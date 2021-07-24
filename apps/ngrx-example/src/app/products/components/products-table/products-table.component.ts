@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 import { Product } from '../../../data';
 
 @Component({
@@ -32,6 +33,9 @@ export class ProductsTableComponent {
 
   @Output()
   changePage = new EventEmitter<PageEvent>();
+
+  @Output()
+  sortChange = new EventEmitter<Sort>();
 
   readonly displayedColumns = [
     'name',
