@@ -1,18 +1,18 @@
 ## NGRX Example
 
-- Run dev server
+### Run dev server
 
 ```
 npm run start-dev-server
 ```
 
-- Start ngrx demo
+### Start ngrx demo
 
 ```
 npm start
 ```
 
-- Test
+### Test
 
 ```
 npm test
