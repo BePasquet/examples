@@ -1,17 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { select, Store } from '@ngrx/store';
-import { Subject, Subscription } from 'rxjs';
-import { map, scan, shareReplay, startWith, tap } from 'rxjs/operators';
-import { getProducts, ProductsPartialState } from '../../+state';
+import { BehaviorSubject } from 'rxjs';
+import { ProductsPartialState } from '../../+state';
 import {
   changeProductsPage,
   openDeleteConfirmationDialog,
   openProductDialog,
-  ProductComponentEvents,
-  productsFilterInitialState,
-  productsFilterReducer,
+  openProductsComponent,
   searchProductByName,
   selectProductsVM,
   sortProducts,
@@ -23,45 +20,28 @@ import {
   styleUrls: ['./products.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsComponent implements OnDestroy {
+export class ProductsComponent {
   readonly state$ = this.store.pipe(select(selectProductsVM));
 
-  private readonly events$ = new Subject<ProductComponentEvents>();
-
-  private readonly filter$ = this.events$.pipe(
-    startWith(searchProductByName({ payload: '' })),
-    scan(productsFilterReducer, productsFilterInitialState),
-    shareReplay(1)
-  );
-
-  readonly pageIndex$ = this.filter$.pipe(
-    map(({ offset, limit }) => offset / limit)
-  );
-
-  private readonly searchProducts$ = this.filter$.pipe(
-    tap((payload) => this.store.dispatch(getProducts({ payload })))
-  );
-
-  private readonly subscriptions = new Subscription();
+  readonly pageIndex$ = new BehaviorSubject(0);
 
   constructor(private readonly store: Store<ProductsPartialState>) {
-    this.subscriptions.add(this.searchProducts$.subscribe());
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.store.dispatch(openProductsComponent());
   }
 
   searchProducts(name: string): void {
-    this.events$.next(searchProductByName({ payload: name }));
+    this.pageIndex$.next(0);
+    this.store.dispatch(searchProductByName({ payload: name }));
   }
 
   sort(ev: Sort): void {
-    this.events$.next(sortProducts({ payload: ev }));
+    this.pageIndex$.next(0);
+    this.store.dispatch(sortProducts({ payload: ev }));
   }
 
   changePage(ev: PageEvent): void {
-    this.events$.next(changeProductsPage({ payload: ev }));
+    this.pageIndex$.next(ev.pageIndex);
+    this.store.dispatch(changeProductsPage({ payload: ev }));
   }
 
   openProductDialog(productId: string): void {

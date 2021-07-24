@@ -17,6 +17,11 @@ import {
 import { ProductFilter } from '../../../data';
 
 // Actions
+
+export const openProductsComponent = createAction(
+  '[Products] Open Products Component'
+);
+
 export const openProductDialog = createAction(
   '[Products Component] Open Product Dialog',
   props<{ payload: { productId: string } }>()
@@ -94,5 +99,9 @@ export const productsFilterReducer = createReducer(
     ...state,
     offset: 0,
     sort: { key: active, direction },
+  })),
+  on(openProductsComponent, (state) => ({
+    ...state,
+    ...productsFilterInitialState,
   }))
 );

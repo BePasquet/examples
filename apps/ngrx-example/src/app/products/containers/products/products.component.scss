@@ -26,6 +26,10 @@
     flex: 1;
   }
 
+  .hidden {
+    display: none;
+  }
+
   .fill-page {
     display: flex;
     flex-direction: column;

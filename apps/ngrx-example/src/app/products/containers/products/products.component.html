@@ -7,7 +7,10 @@
     ></app-search-input>
   </div>
 
-  <div class="table-container" *ngIf="!!state.total && state.loaded">
+  <div
+    class="table-container"
+    [class.hidden]="(!state.total && state.loaded) || state.loading"
+  >
     <app-products-table
       [pageIndex]="(pageIndex$ | async) ?? 0"
       [products]="state.products"

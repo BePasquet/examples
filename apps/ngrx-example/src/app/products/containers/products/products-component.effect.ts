@@ -2,13 +2,20 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { concatMap, exhaustMap, map, withLatestFrom } from 'rxjs/operators';
+import {
+  concatMap,
+  exhaustMap,
+  map,
+  scan,
+  withLatestFrom,
+} from 'rxjs/operators';
 import {
   createProductFail,
   createProductSuccess,
   deleteProduct,
   deleteProductFail,
   deleteProductSuccess,
+  getProducts,
   ProductsPartialState,
   selectProductEntities,
   updateProductFail,
@@ -20,12 +27,31 @@ import { ProductFormComponent } from '../../components/product-form/product-form
 import {
   acceptDeleteConfirmationDialog,
   cancelDeleteConfirmationDialog,
+  changeProductsPage,
   openDeleteConfirmationDialog,
   openProductDialog,
+  openProductsComponent,
+  productsFilterInitialState,
+  productsFilterReducer,
+  searchProductByName,
+  sortProducts,
 } from './products.helper';
 
 @Injectable()
 export class ProductsComponentEffect {
+  searchProducts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(
+        openProductsComponent,
+        searchProductByName,
+        changeProductsPage,
+        sortProducts
+      ),
+      scan(productsFilterReducer, productsFilterInitialState),
+      map((payload) => getProducts({ payload }))
+    )
+  );
+
   openProductDialog$ = createEffect(
     () =>
       this.actions$.pipe(
