@@ -17,6 +17,11 @@ export const selectProductEntities = createSelector(
   selectEntities
 );
 
+export const selectProductsTotal = createSelector(
+  selectProductsState,
+  ({ total }) => total
+);
+
 export const selectProductsLoading = createSelector(
   selectProductsState,
   ({ loading }) => loading

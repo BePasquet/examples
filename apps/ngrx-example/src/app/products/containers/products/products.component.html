@@ -10,8 +10,10 @@
   <div class="table-container">
     <app-products-table
       [products]="state.products"
+      [total]="state.total"
       (editProduct)="openProductDialog($event.id)"
       (deleteProduct)="confirmDelete($event.id)"
+      (changePage)="changePage($event)"
     ></app-products-table>
   </div>
 </div>

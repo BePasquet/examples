@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'apps/ngrx-example/src/environments/environment';
 import { Observable } from 'rxjs';
-import { Product, ProductFilter } from '../../data';
+import { map } from 'rxjs/operators';
+import { EntitiesWithTotal, Product, ProductFilter } from '../../data';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,14 @@ export class ProductsService {
 
   constructor(private readonly http: HttpClient) {}
 
-  getProducts({ name }: ProductFilter): Observable<Product[]> {
-    const query = !!name ? `${this.endpoint}?q=${name}` : this.endpoint;
-    return this.http.get<Product[]>(query);
+  getProducts(filter: ProductFilter): Observable<EntitiesWithTotal<Product>> {
+    const query = this.buildGetProductQuery(filter);
+    return this.http.get<Product[]>(query, { observe: 'response' }).pipe(
+      map((response) => ({
+        results: response.body ?? [],
+        total: parseInt(response.headers.get('X-Total-Count') ?? '', 10),
+      }))
+    );
   }
 
   createProduct(product: Omit<Product, 'id'>): Observable<Product> {
@@ -27,5 +33,10 @@ export class ProductsService {
 
   deleteProduct(id: string): Observable<void> {
     return this.http.delete<void>(`${this.endpoint}/${id}`);
+  }
+
+  private buildGetProductQuery({ name, limit, offset }: ProductFilter): string {
+    const query = `${this.endpoint}?_start=${offset}&_limit=${limit}`;
+    return !!name ? `${query}&q=${name}` : query;
   }
 }

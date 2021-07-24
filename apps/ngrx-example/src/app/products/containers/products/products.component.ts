@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { select, Store } from '@ngrx/store';
 import { ProductsPartialState } from '../../+state';
 import {
@@ -23,7 +24,9 @@ export class ProductsComponent implements OnInit {
   }
 
   searchProducts(name: string): void {
-    this.store.dispatch(searchProducts({ payload: { name } }));
+    this.store.dispatch(
+      searchProducts({ payload: { name, offset: 0, limit: 10 } })
+    );
   }
 
   openProductDialog(productId: string): void {
@@ -33,6 +36,14 @@ export class ProductsComponent implements OnInit {
   confirmDelete(productId: string): void {
     this.store.dispatch(
       openDeleteConfirmationDialog({ payload: { productId } })
+    );
+  }
+
+  changePage({ pageIndex, pageSize }: PageEvent) {
+    this.store.dispatch(
+      searchProducts({
+        payload: { name: '', limit: pageSize, offset: pageIndex * pageSize },
+      })
     );
   }
 }

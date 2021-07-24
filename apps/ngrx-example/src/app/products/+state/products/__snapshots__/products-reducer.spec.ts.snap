@@ -7,6 +7,7 @@ Object {
   "ids": Array [],
   "loaded": false,
   "loading": true,
+  "total": 0,
 }
 `;
 
@@ -17,19 +18,18 @@ Object {
   "ids": Array [],
   "loaded": false,
   "loading": false,
+  "total": 0,
 }
 `;
 
-exports[`Products Reducer createProductSuccess Should add a product to entities, set loading to false and error to empty string 1`] = `
+exports[`Products Reducer createProductSuccess Should add a product to entities, add one to total, set loading to false and error to empty string 1`] = `
 Object {
   "entities": Object {
     "1": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "1",
-      "images": Array [],
       "name": "Whey Protein",
       "price": 100,
       "rating": 5,
@@ -42,6 +42,7 @@ Object {
   ],
   "loaded": false,
   "loading": false,
+  "total": 1,
 }
 `;
 
@@ -52,6 +53,7 @@ Object {
   "ids": Array [],
   "loaded": false,
   "loading": true,
+  "total": 0,
 }
 `;
 
@@ -62,19 +64,18 @@ Object {
   "ids": Array [],
   "loaded": false,
   "loading": false,
+  "total": 0,
 }
 `;
 
-exports[`Products Reducer deleteProductSuccess Should remove product from entities, set loading to false and error to empty string 1`] = `
+exports[`Products Reducer deleteProductSuccess Should remove product from entities, remove one from total, set loading to false and error to empty string 1`] = `
 Object {
   "entities": Object {
     "2": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "2",
-      "images": Array [],
       "name": "Fat Burner",
       "price": 50,
       "rating": 5,
@@ -82,11 +83,9 @@ Object {
     },
     "3": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "3",
-      "images": Array [],
       "name": "Protein Bar",
       "price": 10,
       "rating": 5,
@@ -100,6 +99,18 @@ Object {
   ],
   "loaded": true,
   "loading": false,
+  "total": 1,
+}
+`;
+
+exports[`Products Reducer getProducts Should remove all entities, set loading to true, loaded to false, total to 0 and clean the error 1`] = `
+Object {
+  "entities": Object {},
+  "error": "",
+  "ids": Array [],
+  "loaded": false,
+  "loading": true,
+  "total": 0,
 }
 `;
 
@@ -110,19 +121,18 @@ Object {
   "ids": Array [],
   "loaded": false,
   "loading": false,
+  "total": 0,
 }
 `;
 
-exports[`Products Reducer getProductsSuccess Should populate the state with products, loading to false, loaded to true, and error to an empty string 1`] = `
+exports[`Products Reducer getProductsSuccess Should populate the state with products, total with products count, loading to false, loaded to true, and error to an empty string 1`] = `
 Object {
   "entities": Object {
     "1": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "1",
-      "images": Array [],
       "name": "Whey Protein",
       "price": 100,
       "rating": 5,
@@ -130,11 +140,9 @@ Object {
     },
     "2": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "2",
-      "images": Array [],
       "name": "Fat Burner",
       "price": 50,
       "rating": 5,
@@ -142,11 +150,9 @@ Object {
     },
     "3": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "3",
-      "images": Array [],
       "name": "Protein Bar",
       "price": 10,
       "rating": 5,
@@ -161,6 +167,7 @@ Object {
   ],
   "loaded": true,
   "loading": false,
+  "total": 2,
 }
 `;
 
@@ -171,6 +178,7 @@ Object {
   "ids": Array [],
   "loaded": false,
   "loading": true,
+  "total": 0,
 }
 `;
 
@@ -181,6 +189,7 @@ Object {
   "ids": Array [],
   "loaded": false,
   "loading": false,
+  "total": 0,
 }
 `;
 
@@ -189,11 +198,9 @@ Object {
   "entities": Object {
     "1": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "1",
-      "images": Array [],
       "name": "Pre Workout",
       "price": 100,
       "rating": 5,
@@ -201,11 +208,9 @@ Object {
     },
     "2": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "2",
-      "images": Array [],
       "name": "Fat Burner",
       "price": 50,
       "rating": 5,
@@ -213,11 +218,9 @@ Object {
     },
     "3": Object {
       "active": true,
-      "categoryId": "1",
       "description": "lorem ipsum",
       "discount": 0,
       "id": "3",
-      "images": Array [],
       "name": "Protein Bar",
       "price": 10,
       "rating": 5,
@@ -232,5 +235,6 @@ Object {
   ],
   "loaded": true,
   "loading": false,
+  "total": 2,
 }
 `;

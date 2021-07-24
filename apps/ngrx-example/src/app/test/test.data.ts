@@ -1,4 +1,4 @@
-import { Product } from '../data';
+import { EntitiesWithTotal, Product, ProductFilter } from '../data';
 
 export const errorMessage = 'ERROR';
 
@@ -7,9 +7,7 @@ export const product: Product = {
   name: 'Whey Protein',
   description: 'lorem ipsum',
   active: true,
-  categoryId: '1',
   discount: 0,
-  images: [],
   price: 100,
   rating: 5,
   stock: 100,
@@ -22,9 +20,8 @@ export const products: Product[] = [
     name: 'Fat Burner',
     description: 'lorem ipsum',
     active: true,
-    categoryId: '1',
     discount: 0,
-    images: [],
+
     price: 50,
     rating: 5,
     stock: 100,
@@ -34,11 +31,21 @@ export const products: Product[] = [
     name: 'Protein Bar',
     description: 'lorem ipsum',
     active: true,
-    categoryId: '1',
     discount: 0,
-    images: [],
+
     price: 10,
     rating: 5,
     stock: 100,
   },
 ];
+
+export const productsAPIResponse: EntitiesWithTotal<Product> = {
+  results: products,
+  total: 2,
+};
+
+export const productFilter: ProductFilter = {
+  name: '',
+  limit: 10,
+  offset: 0,
+};

@@ -5,6 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Product } from '../../../data';
 
 @Component({
@@ -17,11 +18,17 @@ export class ProductsTableComponent {
   @Input()
   products: Product[] = [];
 
+  @Input()
+  total: number = 0;
+
   @Output()
   deleteProduct = new EventEmitter<Product>();
 
   @Output()
   editProduct = new EventEmitter<Product>();
+
+  @Output()
+  changePage = new EventEmitter<PageEvent>();
 
   readonly displayedColumns = [
     'name',

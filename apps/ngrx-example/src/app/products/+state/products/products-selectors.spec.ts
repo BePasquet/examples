@@ -1,4 +1,4 @@
-import { products } from '../../../test/test.data';
+import { products, productsAPIResponse } from '../../../test/test.data';
 import { getProductsSuccess } from './products.actions';
 import {
   productsInitialState,
@@ -28,7 +28,7 @@ describe('Products Selectors', () => {
 
   describe('selectProducts', () => {
     it('Should return an array of products', () => {
-      const action = getProductsSuccess({ payload: products });
+      const action = getProductsSuccess({ payload: productsAPIResponse });
       const productsState = productsReducer(productsInitialState, action);
       const appState = {
         [PRODUCTS_STATE_KEY]: productsState,

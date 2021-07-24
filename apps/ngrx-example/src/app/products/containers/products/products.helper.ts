@@ -4,6 +4,7 @@ import {
   selectProductsError,
   selectProductsLoaded,
   selectProductsLoading,
+  selectProductsTotal,
 } from '../../+state';
 import { ProductFilter } from '../../../data';
 
@@ -35,8 +36,15 @@ export const cancelDeleteConfirmationDialog = createAction(
 // Selectors
 export const selectProductsVM = createSelector(
   selectProducts,
+  selectProductsTotal,
   selectProductsLoading,
   selectProductsLoaded,
   selectProductsError,
-  (products, loading, loaded, error) => ({ products, loading, loaded, error })
+  (products, total, loading, loaded, error) => ({
+    products,
+    total,
+    loading,
+    loaded,
+    error,
+  })
 );

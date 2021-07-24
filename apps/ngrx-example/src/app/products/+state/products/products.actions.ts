@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Product, ProductFilter } from '../../../data';
+import { EntitiesWithTotal, Product, ProductFilter } from '../../../data';
 
 export const getProducts = createAction(
   '[Products] Get Products',
@@ -8,7 +8,7 @@ export const getProducts = createAction(
 
 export const getProductsSuccess = createAction(
   '[Products] Get Products Success',
-  props<{ payload: Product[] }>()
+  props<{ payload: EntitiesWithTotal<Product> }>()
 );
 
 export const getProductsFail = createAction(

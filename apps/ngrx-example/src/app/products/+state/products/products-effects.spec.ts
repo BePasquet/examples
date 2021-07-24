@@ -1,5 +1,10 @@
 import { TestScheduler } from 'rxjs/testing';
-import { errorMessage, product, products } from '../../../test/test.data';
+import {
+  errorMessage,
+  product,
+  productFilter,
+  productsAPIResponse,
+} from '../../../test/test.data';
 import {
   createProduct,
   createProductFail,
@@ -32,16 +37,18 @@ describe('Products Effect', () => {
         const b = '---b|';
         const c = '-----c';
 
-        const payload = { name: '' };
-        const initiatorAction = getProducts({ payload });
-        const successAction = getProductsSuccess({ payload: products });
+        const payload = productFilter;
+        const initiatorAction = getProducts({ payload: productFilter });
+        const successAction = getProductsSuccess({
+          payload: productsAPIResponse,
+        });
 
         const actions$ = hot(a, {
           a: initiatorAction,
         });
 
         const productsService = {
-          getProducts: jest.fn(() => cold(b, { b: products })),
+          getProducts: jest.fn(() => cold(b, { b: productsAPIResponse })),
         } as any;
         ``;
 
@@ -64,8 +71,8 @@ describe('Products Effect', () => {
         const b = '--#';
         const c = '---c';
 
-        const payload = { name: '' };
-        const initiatorAction = getProducts({ payload });
+        const payload = productFilter;
+        const initiatorAction = getProducts({ payload: productFilter });
         const failAction = getProductsFail({ payload: errorMessage });
 
         const actions$ = hot(a, { a: initiatorAction });

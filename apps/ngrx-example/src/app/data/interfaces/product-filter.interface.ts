@@ -1,3 +1,5 @@
-export interface ProductFilter {
+import { Pagination } from './pagination.interface';
+
+export interface ProductFilter extends Pagination {
   name: string;
 }

@@ -1,5 +1,10 @@
 import { createAction } from '@ngrx/store';
-import { errorMessage, product, products } from '../../../test/test.data';
+import {
+  errorMessage,
+  product,
+  productFilter,
+  productsAPIResponse,
+} from '../../../test/test.data';
 import {
   createProduct,
   createProductFail,
@@ -25,33 +30,31 @@ describe('Products Reducer', () => {
   });
 
   describe('getProducts', () => {
-    it('Should remove all entities, set loading to true, loaded to false and clean the error', () => {
-      const successAction = getProductsSuccess({ payload: products });
+    it('Should remove all entities, set loading to true, loaded to false, total to 0 and clean the error', () => {
+      const successAction = getProductsSuccess({
+        payload: productsAPIResponse,
+      });
 
       const populatedState = productsReducer(
         productsInitialState,
         successAction
       );
 
-      const action = getProducts({ payload: { name: '' } });
+      const action = getProducts({
+        payload: productFilter,
+      });
       const state = productsReducer(populatedState, action);
-      const expected = {
-        entities: {},
-        error: '',
-        ids: [],
-        loaded: false,
-        loading: true,
-      };
 
-      expect(state).toEqual(expected);
+      expect(state).toMatchSnapshot();
     });
   });
 
   describe('getProductsSuccess', () => {
-    it('Should populate the state with products, loading to false, loaded to true, and error to an empty string', () => {
-      const action = getProductsSuccess({ payload: products });
+    it('Should populate the state with products, total with products count, loading to false, loaded to true, and error to an empty string', () => {
+      const action = getProductsSuccess({
+        payload: productsAPIResponse,
+      });
       const state = productsReducer(productsInitialState, action);
-
       expect(state).toMatchSnapshot();
     });
   });
@@ -76,7 +79,7 @@ describe('Products Reducer', () => {
   });
 
   describe('createProductSuccess', () => {
-    it('Should add a product to entities, set loading to false and error to empty string', () => {
+    it('Should add a product to entities, add one to total, set loading to false and error to empty string', () => {
       const action = createProductSuccess({ payload: product });
       const state = productsReducer(productsInitialState, action);
 
@@ -104,7 +107,9 @@ describe('Products Reducer', () => {
 
   describe('updateProductSuccess', () => {
     it('Should update a product from the entities, set loading to false, and error to empty string', () => {
-      const successAction = getProductsSuccess({ payload: products });
+      const successAction = getProductsSuccess({
+        payload: productsAPIResponse,
+      });
 
       const populatedState = productsReducer(
         productsInitialState,
@@ -140,8 +145,10 @@ describe('Products Reducer', () => {
   });
 
   describe('deleteProductSuccess', () => {
-    it('Should remove product from entities, set loading to false and error to empty string', () => {
-      const successAction = getProductsSuccess({ payload: products });
+    it('Should remove product from entities, remove one from total, set loading to false and error to empty string', () => {
+      const successAction = getProductsSuccess({
+        payload: productsAPIResponse,
+      });
 
       const populatedState = productsReducer(
         productsInitialState,

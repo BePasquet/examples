@@ -60,4 +60,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </mat-table>
+  <mat-paginator
+    [length]="total"
+    [pageSizeOptions]="[10, 20]"
+    (page)="changePage.emit($event)"
+    showFirstLastButtons
+  ></mat-paginator>
 </div>
