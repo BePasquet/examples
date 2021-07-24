@@ -21,6 +21,9 @@ export class ProductsTableComponent {
   @Input()
   total: number = 0;
 
+  @Input()
+  pageIndex: number = 0;
+
   @Output()
   deleteProduct = new EventEmitter<Product>();
 

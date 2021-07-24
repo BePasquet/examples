@@ -9,7 +9,6 @@ import {
   deleteProduct,
   deleteProductFail,
   deleteProductSuccess,
-  getProducts,
   ProductsPartialState,
   selectProductEntities,
   updateProductFail,
@@ -23,18 +22,10 @@ import {
   cancelDeleteConfirmationDialog,
   openDeleteConfirmationDialog,
   openProductDialog,
-  searchProducts,
 } from './products.helper';
 
 @Injectable()
 export class ProductsComponentEffect {
-  searchProducts$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(searchProducts),
-      map(({ payload }) => getProducts({ payload }))
-    )
-  );
-
   openProductDialog$ = createEffect(
     () =>
       this.actions$.pipe(

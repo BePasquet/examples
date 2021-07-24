@@ -9,6 +9,7 @@
 
   <div class="table-container">
     <app-products-table
+      [pageIndex]="(pageIndex$ | async) ?? 0"
       [products]="state.products"
       [total]="state.total"
       (editProduct)="openProductDialog($event.id)"
