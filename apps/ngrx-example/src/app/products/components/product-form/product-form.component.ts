@@ -39,14 +39,7 @@ export class ProductFormComponent {
         Validators.max(Number.MAX_SAFE_INTEGER),
       ],
     ],
-    stock: [
-      1,
-      [
-        Validators.required,
-        Validators.min(1),
-        Validators.max(Number.MAX_SAFE_INTEGER),
-      ],
-    ],
+    stock: [1, [Validators.required, Validators.max(Number.MAX_SAFE_INTEGER)]],
     active: [true, [Validators.required]],
     rating: [0, [Validators.required, Validators.max(5)]],
     discount: [0, [Validators.required, Validators.max(100)]],
@@ -62,11 +55,16 @@ export class ProductFormComponent {
     }
   }
 
-  submit({ id, name, description, ...entities }: Product): void {
+  submit(
+    id: string,
+    { name, description, price, stock, ...props }: Omit<Product, 'id'>
+  ): void {
     const product = {
       name: name.trim(),
       description: description.trim(),
-      ...entities,
+      price: parseFloat(price.toFixed(2)),
+      stock: Math.floor(stock),
+      ...props,
     };
 
     const action = !id

@@ -1,1 +1,104 @@
-form
+<div class="product-form-container">
+  <h1>{{ !id ? 'Create' : 'Update' }} Product</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit(id, form.value)">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name" />
+      <mat-error>
+        <p *ngIf="form.get('name')?.hasError('required')">
+          Please enter a name
+        </p>
+
+        <p *ngIf="form.get('name')?.hasError('minlength')">
+          Please enter a name with more that 3 characters
+        </p>
+
+        <p *ngIf="form.get('name')?.hasError('maxlength')">
+          Please enter a name with less that 4000 characters
+        </p>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea type="text" matInput formControlName="description"></textarea>
+      <mat-error>
+        <p *ngIf="form.get('description')?.hasError('required')">
+          Please enter a description
+        </p>
+
+        <p *ngIf="form.get('description')?.hasError('minlength')">
+          Please enter a description with more that 3 characters
+        </p>
+
+        <p *ngIf="form.get('description')?.hasError('maxlength')">
+          Please enter a description with less that 4000 characters
+        </p>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Price</mat-label>
+      <input type="number" matInput formControlName="price" />
+
+      <mat-error>
+        <p *ngIf="form.get('price')?.hasError('required')">
+          Please enter a price
+        </p>
+
+        <p
+          *ngIf="
+            form.get('price')?.hasError('min') ||
+            form.get('price')?.hasError('max')
+          "
+        >
+          Please enter a valid price
+        </p>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="toggle-container">
+      <h2>Active</h2>
+      <mat-slide-toggle formControlName="active"></mat-slide-toggle>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Rating</mat-label>
+      <input type="number" matInput formControlName="rating" />
+
+      <mat-error>
+        <p *ngIf="form.get('rating')?.hasError('required')">
+          Please enter a rating
+        </p>
+
+        <p *ngIf="form.get('rating')?.hasError('max')">
+          Please enter a rating between 0 and 5
+        </p>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Stock</mat-label>
+      <input type="number" matInput formControlName="stock" />
+
+      <mat-error>
+        <p *ngIf="form.get('stock')?.hasError('required')">
+          Please enter a stock
+        </p>
+
+        <p *ngIf="form.get('stock')?.hasError('max')">
+          Please enter a valid stock
+        </p>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button [mat-dialog-close]>Cancel</button>
+
+      <button mat-raised-button color="primary" [disabled]="form.invalid">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
