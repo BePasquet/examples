@@ -33,7 +33,7 @@ export class ProductsComponent implements OnDestroy {
   );
 
   readonly pageIndex$ = this.filter$.pipe(
-    map(({ offset, limit }) => (!offset ? 0 : offset / limit))
+    map(({ offset, limit }) => offset / limit)
   );
 
   private readonly searchProducts$ = this.filter$.pipe(
