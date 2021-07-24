@@ -10,6 +10,7 @@ import { Product } from '../../../data';
 @Component({
   selector: 'app-products-table',
   templateUrl: './products-table.component.html',
+  styleUrls: ['./products-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsTableComponent {
