@@ -7,7 +7,7 @@
     ></app-search-input>
   </div>
 
-  <div class="table-container">
+  <div class="table-container" *ngIf="!!state.total && state.loaded">
     <app-products-table
       [pageIndex]="(pageIndex$ | async) ?? 0"
       [products]="state.products"
@@ -17,5 +17,19 @@
       (changePage)="changePage($event)"
       (sortChange)="sort($event)"
     ></app-products-table>
+  </div>
+
+  <div class="fill-page" *ngIf="!!state.error">
+    <mat-icon>error</mat-icon>
+    <h2>Sorry there was an error please try again later</h2>
+  </div>
+
+  <div class="fill-page" *ngIf="!state.total && state.loaded && !state.loading">
+    <mat-icon>info</mat-icon>
+    <h2>No Results try using other filter</h2>
+  </div>
+
+  <div class="fill-page" *ngIf="state.loading">
+    <mat-spinner color="primary" [diameter]="50"></mat-spinner>
   </div>
 </div>

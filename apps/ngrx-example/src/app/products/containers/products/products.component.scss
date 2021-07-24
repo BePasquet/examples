@@ -1,8 +1,42 @@
 .products-container {
-  padding: 20px;
+  padding: 0 1.42em;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100%;
+
+  h1 {
+    margin-top: 0.72em;
+  }
+
+  h2 {
+    margin-top: 0.72em;
+    font-size: 1.14rem;
+    font-weight: normal;
+  }
 
   .search-container {
     display: flex;
     justify-content: flex-end;
+  }
+
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .fill-page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
+    mat-icon {
+      height: 40px;
+      width: 40px;
+      font-size: 40px;
+    }
   }
 }
