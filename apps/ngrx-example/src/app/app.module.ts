@@ -8,6 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRouterModule } from './app-router.module';
 import { AppComponent } from './app.component';
+import { LayoutModule } from './layout';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { AppComponent } from './app.component';
     }),
     EffectsModule.forRoot([]),
     AppRouterModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

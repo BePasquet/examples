@@ -2,13 +2,20 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { exhaustMap, map, withLatestFrom } from 'rxjs/operators';
+import { concatMap, exhaustMap, map, withLatestFrom } from 'rxjs/operators';
 import {
+  createProductFail,
+  createProductSuccess,
   deleteProduct,
+  deleteProductFail,
+  deleteProductSuccess,
   getProducts,
   ProductsPartialState,
   selectProductEntities,
+  updateProductFail,
+  updateProductSuccess,
 } from '../../+state';
+import { closeDialogs, showMessage } from '../../../layout';
 import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog.component';
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
 import {
@@ -70,6 +77,40 @@ export class ProductsComponentEffect {
     this.actions$.pipe(
       ofType(acceptDeleteConfirmationDialog),
       map(({ payload }) => deleteProduct({ payload }))
+    )
+  );
+
+  upsertProductSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createProductSuccess, updateProductSuccess),
+      map(({ type }) =>
+        type === createProductSuccess.type
+          ? 'Product created!'
+          : 'Product updated!'
+      ),
+      concatMap((message) => [
+        closeDialogs(),
+        showMessage({ payload: message }),
+      ])
+    )
+  );
+
+  deleteProductSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteProductSuccess),
+      concatMap(() => [
+        closeDialogs(),
+        showMessage({ payload: `Product deleted!` }),
+      ])
+    )
+  );
+
+  createUpdateDeleteFail$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createProductFail, updateProductFail, deleteProductFail),
+      map(() =>
+        showMessage({ payload: `There was an error please try again later` })
+      )
     )
   );
 

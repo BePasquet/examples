@@ -1,39 +1,6 @@
 {
   "products": [
     {
-      "id": "56e1466f-0f02-428c-ab86-51cb73d6226e",
-      "name": "Mince Meat - Filling",
-      "description": "Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-      "categoryId": "563c8380-9ab3-4625-9e41-6460eace6f27",
-      "price": 97,
-      "stock": 84,
-      "active": false,
-      "rating": 4,
-      "discount": 27
-    },
-    {
-      "id": "4563e145-87a2-4f3c-bb85-6a16002537d3",
-      "name": "Plastic Arrow Stir Stick",
-      "description": "Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.",
-      "categoryId": "371666b0-da60-402e-9d92-c7deb2895eb6",
-      "price": 8,
-      "stock": 12,
-      "active": true,
-      "rating": 4,
-      "discount": 95
-    },
-    {
-      "id": "f8b11cc4-ebf4-41be-bab2-f64cd7e5791e",
-      "name": "Butter - Salted, Micro",
-      "description": "Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
-      "categoryId": "b4678278-4b16-4184-93a8-18d49a7c780f",
-      "price": 22,
-      "stock": 94,
-      "active": false,
-      "rating": 2,
-      "discount": 23
-    },
-    {
       "id": "7d8711c0-72df-48af-afff-afd42e285226",
       "name": "Sausage - Chorizo",
       "description": "In hac habitasse platea dictumst.",
