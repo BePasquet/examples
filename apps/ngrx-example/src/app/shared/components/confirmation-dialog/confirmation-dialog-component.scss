@@ -1,0 +1,22 @@
+.confirmation-dialog-container {
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin: 0;
+    padding-top: 0.72em;
+  }
+
+  .buttons-container {
+    margin-top: 2.15em;
+    display: flex;
+    flex-direction: 'row';
+    justify-content: flex-end;
+
+    button:first-child {
+      margin-right: 0.72em;
+    }
+  }
+}

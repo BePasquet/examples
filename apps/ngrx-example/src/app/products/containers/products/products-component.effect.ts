@@ -16,7 +16,7 @@ import {
   updateProductSuccess,
 } from '../../+state';
 import { closeDialogs, showMessage } from '../../../layout';
-import { ConfirmationDialogComponent } from '../../../shared/components/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../../shared';
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
 import {
   acceptDeleteConfirmationDialog,
@@ -60,7 +60,12 @@ export class ProductsComponentEffect {
       ofType(openDeleteConfirmationDialog),
       exhaustMap(({ payload: { productId } }) =>
         this.matDialog
-          .open(ConfirmationDialogComponent)
+          .open(ConfirmationDialogComponent, {
+            data: {
+              title: 'Are you sure you want to delete this product?',
+              body: 'Once you delete a product you will not be able to sell it anymore',
+            },
+          })
           .afterClosed()
           .pipe(
             map((accept) =>
