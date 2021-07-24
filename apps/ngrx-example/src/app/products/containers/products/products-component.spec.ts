@@ -6,7 +6,8 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { TestScheduler } from 'rxjs/testing';
 import { productsInitialState, PRODUCTS_STATE_KEY } from '../../+state';
 import { ProductsModule } from '../../products.module';
-import { ProductsComponent, selectProductsVM } from './products.component';
+import { ProductsComponent } from './products.component';
+import { selectProductsVM } from './products.helper';
 
 describe('Products Component', () => {
   let testScheduler: TestScheduler;

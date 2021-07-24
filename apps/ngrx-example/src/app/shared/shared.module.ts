@@ -5,10 +5,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog.component';
 import { SearchInputComponent } from './components/search-input.component';
+import { DebouncedInputDirective } from './directives/debounced-input.directive';
 
 @NgModule({
   imports: [MatDialogModule, MatFormFieldModule, MatInputModule, MatIconModule],
-  declarations: [ConfirmationDialogComponent, SearchInputComponent],
+  declarations: [
+    ConfirmationDialogComponent,
+    SearchInputComponent,
+    DebouncedInputDirective,
+  ],
   exports: [SearchInputComponent],
 })
 export class SharedModule {}

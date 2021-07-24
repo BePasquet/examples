@@ -12,8 +12,9 @@ export class ProductsService {
 
   constructor(private readonly http: HttpClient) {}
 
-  getProducts(criteria: ProductFilter): Observable<Product[]> {
-    return this.http.get<Product[]>(this.endpoint);
+  getProducts({ name }: ProductFilter): Observable<Product[]> {
+    const query = !!name ? `${this.endpoint}?q=${name}` : this.endpoint;
+    return this.http.get<Product[]>(query);
   }
 
   createProduct(product: Omit<Product, 'id'>): Observable<Product> {

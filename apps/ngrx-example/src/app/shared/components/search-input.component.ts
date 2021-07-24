@@ -7,8 +7,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
       <mat-label>Search</mat-label>
       <input
         matInput
-        #searchInputRef
-        (input)="input.emit(searchInputRef.value)"
+        debouncedInput
+        (textChanges)="searchChanges.emit($event)"
       />
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
@@ -16,5 +16,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SearchInputComponent {
   @Output()
-  input = new EventEmitter<string>();
+  searchChanges = new EventEmitter<string>();
 }

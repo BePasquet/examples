@@ -1,7 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { ProductsPartialState } from '../../+state';
 import {
   openDeleteConfirmationDialog,
@@ -15,29 +13,17 @@ import {
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnDestroy {
+export class ProductsComponent implements OnInit {
   readonly state$ = this.store.pipe(select(selectProductsVM));
-
-  readonly searchInput$ = new Subject<string>();
-
-  private readonly searchProducts$ = this.searchInput$.pipe(
-    debounceTime(350),
-    distinctUntilChanged(),
-    map((name) => searchProducts({ payload: { name } })),
-    tap((action) => this.store.dispatch(action))
-  );
-
-  private readonly subscriptions = new Subscription();
 
   constructor(private readonly store: Store<ProductsPartialState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(searchProducts({ payload: { name: '' } }));
-    this.subscriptions.add(this.searchProducts$.subscribe());
+    this.searchProducts('');
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+  searchProducts(name: string): void {
+    this.store.dispatch(searchProducts({ payload: { name } }));
   }
 
   openProductDialog(productId: string): void {

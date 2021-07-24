@@ -2,7 +2,9 @@
   <h1>Products</h1>
 
   <div class="search-container">
-    <app-search-input (input)="searchInput$.next($event)"></app-search-input>
+    <app-search-input
+      (searchChanges)="searchProducts($event)"
+    ></app-search-input>
   </div>
 
   <div class="table-container">
