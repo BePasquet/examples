@@ -5,7 +5,7 @@
     </div>
 
     <form [formGroup]="form" (ngSubmit)="login(form.value)">
-      <mat-form-field>
+      <mat-form-field class="email-container">
         <mat-label>Email</mat-label>
 
         <input type="text" formControlName="email" matInput />
@@ -21,7 +21,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="password-container">
         <mat-label>Password</mat-label>
 
         <input
@@ -29,7 +29,12 @@
           formControlName="password"
           matInput
         />
-        <button mat-icon-button (click)="togglePasswordVisibility()" matSuffix>
+        <button
+          type="button"
+          mat-icon-button
+          (click)="togglePasswordVisibility()"
+          matSuffix
+        >
           <mat-icon>{{
             showPassword ? 'visibility_off' : 'visibility'
           }}</mat-icon>

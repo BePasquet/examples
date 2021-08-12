@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { login } from '../+state';
 import { Authentication } from '../../data';
 
 @Component({
@@ -19,10 +21,13 @@ export class LoginComponent {
     ],
   });
 
-  constructor(private readonly formBuilder: FormBuilder) {}
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly store: Store
+  ) {}
 
-  login(authentication: Authentication): void {
-    console.log(authentication);
+  login({ email, password }: Authentication): void {
+    this.store.dispatch(login({ payload: { email: email.trim(), password } }));
   }
 
   togglePasswordVisibility(): void {
