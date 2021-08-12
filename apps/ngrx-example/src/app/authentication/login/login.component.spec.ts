@@ -127,11 +127,11 @@ describe('LoginComponent', () => {
     expect(passwordError).toBeDefined();
   });
 
-  describe('togglePasswordVisibility method', () => {
+  describe('togglePassword method', () => {
     it('Should toggle showPassword flag', () => {
       expect(component.showPassword).toBe(false);
 
-      component.togglePasswordVisibility();
+      component.togglePassword();
 
       expect(component.showPassword).toBe(true);
     });

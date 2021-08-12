@@ -30,7 +30,7 @@ export class LoginComponent {
     this.store.dispatch(login({ payload: { email: email.trim(), password } }));
   }
 
-  togglePasswordVisibility(): void {
+  togglePassword(): void {
     this.showPassword = !this.showPassword;
   }
 }
