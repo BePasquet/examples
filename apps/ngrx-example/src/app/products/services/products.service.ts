@@ -9,7 +9,7 @@ import { EntitiesWithTotal, Product, ProductFilter } from '../../data';
   providedIn: 'root',
 })
 export class ProductsService {
-  private readonly endpoint = `${environment.API_URI}/products`;
+  private readonly resource = `${environment.API_URI}/products`;
 
   constructor(private readonly http: HttpClient) {}
 
@@ -25,15 +25,15 @@ export class ProductsService {
   }
 
   createProduct(product: Omit<Product, 'id'>): Observable<Product> {
-    return this.http.post<Product>(`${this.endpoint}`, product);
+    return this.http.post<Product>(`${this.resource}`, product);
   }
 
   updateProduct(product: Product): Observable<void> {
-    return this.http.put<void>(`${this.endpoint}/${product.id}`, product);
+    return this.http.put<void>(`${this.resource}/${product.id}`, product);
   }
 
   deleteProduct(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.endpoint}/${id}`);
+    return this.http.delete<void>(`${this.resource}/${id}`);
   }
 
   private buildGetProductQuery({
@@ -42,7 +42,7 @@ export class ProductsService {
     offset,
     sort,
   }: ProductFilter): string {
-    const basQuery = `${this.endpoint}?_start=${offset}&_limit=${limit}`;
+    const basQuery = `${this.resource}?_start=${offset}&_limit=${limit}`;
     const sortQuery = !!sort
       ? `&_sort=${sort.key}&_order=${sort.direction}`
       : '';

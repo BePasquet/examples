@@ -1,6 +1,8 @@
 .products-table-container {
   .action-buttons-container {
     button:first-child {
+      // to avoid box shadow get cut off
+      margin-left: 5px;
       margin-right: 0.72em;
     }
 

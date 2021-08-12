@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { DebouncedInputDirective } from './directives/debounced-input.directive';
+import { UploaderDirective } from './directives/uploader.directive';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { DebouncedInputDirective } from './directives/debounced-input.directive'
     ConfirmationDialogComponent,
     SearchInputComponent,
     DebouncedInputDirective,
+    UploaderDirective,
   ],
-  exports: [SearchInputComponent],
+  exports: [SearchInputComponent, UploaderDirective],
 })
 export class SharedModule {}
