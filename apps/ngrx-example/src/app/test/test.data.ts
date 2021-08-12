@@ -41,7 +41,7 @@ export const products: Product[] = [
 
 export const productsAPIResponse: EntitiesWithTotal<Product> = {
   results: products,
-  total: 2,
+  total: products.length,
 };
 
 export const productFilter: ProductFilter = {

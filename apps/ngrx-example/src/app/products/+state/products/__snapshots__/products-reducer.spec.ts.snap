@@ -99,7 +99,7 @@ Object {
   ],
   "loaded": true,
   "loading": false,
-  "total": 1,
+  "total": 2,
 }
 `;
 
@@ -167,7 +167,7 @@ Object {
   ],
   "loaded": true,
   "loading": false,
-  "total": 2,
+  "total": 3,
 }
 `;
 
@@ -235,6 +235,6 @@ Object {
   ],
   "loaded": true,
   "loading": false,
-  "total": 2,
+  "total": 3,
 }
 `;

@@ -19,7 +19,12 @@ export class ProductsService {
     return this.http.get<Product[]>(query, { observe: 'response' }).pipe(
       map((response) => ({
         results: response.body ?? [],
-        total: parseInt(response.headers.get('X-Total-Count') ?? '', 10),
+        total: parseInt(
+          response.headers.get('X-Total-Count') ||
+            response.body?.length.toString() ||
+            '0',
+          10
+        ),
       }))
     );
   }
