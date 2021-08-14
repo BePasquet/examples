@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NonAuthenticatedGuard } from './authentication';
 
 const routes: Routes = [
   {
@@ -8,6 +9,7 @@ const routes: Routes = [
       import('./products/products.module').then((ref) => ref.ProductsModule),
   },
   {
+    canActivate: [NonAuthenticatedGuard],
     path: 'login',
     loadChildren: () =>
       import('./authentication/authentication.module').then(
