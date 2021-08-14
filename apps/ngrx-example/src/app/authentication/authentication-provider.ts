@@ -9,6 +9,7 @@ import {
   selectAuthenticationChecked,
   selectAuthenticationError,
   selectAuthenticationLoading,
+  selectAuthenticationToken,
   selectIsUserAuthenticated,
 } from './+state';
 
@@ -32,6 +33,10 @@ export class AuthenticationProvider {
 
   readonly isUserAuthenticated$ = this.store.pipe(
     select(selectIsUserAuthenticated)
+  );
+
+  readonly authenticationToken$ = this.store.pipe(
+    select(selectAuthenticationToken)
   );
 
   constructor(private readonly store: Store<AuthenticationPartialState>) {}
