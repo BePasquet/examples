@@ -23,7 +23,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
       withLatestFrom(this.authenticationProvider.authenticationToken$),
       map(([req, token]) =>
         req.clone({
-          setHeaders: { Authorization: `Bearer ${token}` },
+          setHeaders: { Authorization: !!token ? `Bearer ${token}` : '' },
         })
       ),
       mergeMap((interceptedReq) => next.handle(interceptedReq))
