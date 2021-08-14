@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { login } from '../+state';
-import { Authentication } from '../../data';
+import { AuthenticationCredentials } from '../../data';
 
 @Component({
   selector: 'examples-login',
@@ -26,7 +26,7 @@ export class LoginComponent {
     private readonly store: Store
   ) {}
 
-  login({ email, password }: Authentication): void {
+  login({ email, password }: AuthenticationCredentials): void {
     this.store.dispatch(login({ payload: { email: email.trim(), password } }));
   }
 

@@ -1,4 +1,6 @@
+import { User } from './user.interface';
+
 export interface Authentication {
-  email: string;
-  password: string;
+  user: User;
+  token: string;
 }

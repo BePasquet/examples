@@ -1,3 +1,4 @@
+export * from './authentication-credentials.interface';
 export * from './authentication.interface';
 export * from './entities-with-total.interface';
 export * from './order-filter.interface';
