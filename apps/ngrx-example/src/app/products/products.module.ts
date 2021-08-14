@@ -16,6 +16,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
 import { ProductsEffect, productsReducer, PRODUCTS_STATE_KEY } from './+state';
+import {
+  ProductCategoriesEffect,
+  productsCategoriesReducer,
+  PRODUCT_CATEGORIES_STATE_KEY,
+} from './+state/product-categories';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { ProductsComponentEffect } from './containers/products/products-component.effect';
@@ -33,7 +38,15 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(PRODUCTS_STATE_KEY, productsReducer),
-    EffectsModule.forFeature([ProductsEffect, ProductsComponentEffect]),
+    StoreModule.forFeature(
+      PRODUCT_CATEGORIES_STATE_KEY,
+      productsCategoriesReducer
+    ),
+    EffectsModule.forFeature([
+      ProductsEffect,
+      ProductsComponentEffect,
+      ProductCategoriesEffect,
+    ]),
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,

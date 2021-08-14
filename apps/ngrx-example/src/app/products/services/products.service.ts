@@ -3,7 +3,13 @@ import { Injectable } from '@angular/core';
 import { environment } from 'apps/ngrx-example/src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EntitiesWithTotal, Product, ProductFilter } from '../../data';
+import {
+  EntitiesWithTotal,
+  Product,
+  ProductCategory,
+  ProductFilter,
+} from '../../data';
+import { Pagination } from '../../data/interfaces/pagination.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +45,24 @@ export class ProductsService {
 
   deleteProduct(id: string): Observable<void> {
     return this.http.delete<void>(`${this.resource}/${id}`);
+  }
+
+  getProductCategories(
+    filter: Pagination
+  ): Observable<EntitiesWithTotal<ProductCategory>> {
+    return this.http.post<EntitiesWithTotal<ProductCategory>>(
+      `${this.resource}/categories`,
+      filter
+    );
+  }
+
+  createProductCategory(category: {
+    name: string;
+  }): Observable<ProductCategory> {
+    return this.http.post<ProductCategory>(
+      `${this.resource}/category/create`,
+      category
+    );
   }
 
   private buildGetProductQuery({
