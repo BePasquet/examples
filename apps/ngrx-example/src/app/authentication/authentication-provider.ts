@@ -13,7 +13,7 @@ import {
   selectIsUserAuthenticated,
 } from './+state';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthenticationProvider {
   readonly authenticatedUser$ = this.store.pipe(
     select(selectAuthenticatedUser)

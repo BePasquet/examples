@@ -7,7 +7,6 @@ import {
   authenticationReducer,
   AUTHENTICATION_STATE_KEY,
 } from './+state';
-import { AuthenticationProvider } from './authentication-provider';
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
     EffectsModule.forFeature([AuthenticationEffect]),
   ],
   providers: [
-    AuthenticationProvider,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,
