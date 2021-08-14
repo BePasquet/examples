@@ -1,4 +1,4 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRouterModule } from './app-router.module';
 import { AppComponent } from './app.component';
-import { AuthorizationInterceptor } from './authentication';
+import { AuthenticationProviderModule } from './authentication';
 import { LayoutModule } from './layout';
 
 @NgModule({
@@ -25,13 +25,7 @@ import { LayoutModule } from './layout';
     EffectsModule.forRoot([]),
     AppRouterModule,
     LayoutModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthorizationInterceptor,
-      multi: true,
-    },
+    AuthenticationProviderModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,1 +1,3 @@
-export * from './interceptors/authorization.interceptor';
+export * from './authentication-provider';
+export * from './authentication-provider.module';
+export * from './authentication.module';
