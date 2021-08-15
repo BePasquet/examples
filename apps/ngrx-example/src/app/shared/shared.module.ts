@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { ImageUploader } from './components/image-uploader/image-uploader.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { DebouncedInputDirective } from './directives/debounced-input.directive';
 import { UploaderDirective } from './directives/uploader.directive';
@@ -24,7 +25,8 @@ import { UploaderDirective } from './directives/uploader.directive';
     SearchInputComponent,
     DebouncedInputDirective,
     UploaderDirective,
+    ImageUploader,
   ],
-  exports: [SearchInputComponent, UploaderDirective],
+  exports: [SearchInputComponent, UploaderDirective, ImageUploader],
 })
 export class SharedModule {}

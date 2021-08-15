@@ -1,15 +1,7 @@
 <div class="product-form-container">
   <h1>{{ !id ? 'Create' : 'Update' }} Product</h1>
 
-  <div
-    class="uploader"
-    uploader
-    [accepts]="['image/png', 'image/jpg']"
-    [multiple]="true"
-    (fileChanges)="addPicture($event)"
-  >
-    <mat-icon>upload_file</mat-icon>
-  </div>
+  <image-uploader (valueChanges)="addPicture($event)"></image-uploader>
 
   <form [formGroup]="form" (ngSubmit)="submit(id, form.value)">
     <mat-form-field>

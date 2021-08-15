@@ -1,3 +1,15 @@
 {
-  "cSpell.ignoreWords": ["ngrx", "product", "upsert"]
+  "cSpell.ignoreWords": [
+    "area",
+    "drop",
+    "file",
+    "img",
+    "imgs",
+    "ngrx",
+    "product",
+    "srcs",
+    "to",
+    "unhighlight",
+    "upsert"
+  ]
 }

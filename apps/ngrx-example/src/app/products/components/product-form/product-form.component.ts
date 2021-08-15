@@ -76,7 +76,7 @@ export class ProductFormComponent {
     this.store.dispatch(action);
   }
 
-  addPicture(files: FileList): void {
+  addPicture(files: File[]): void {
     console.log(files);
   }
 }
