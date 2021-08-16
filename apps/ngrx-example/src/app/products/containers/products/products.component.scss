@@ -22,9 +22,11 @@
     font-weight: normal;
   }
 
-  .search-container {
+  .option-container {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .table-container {

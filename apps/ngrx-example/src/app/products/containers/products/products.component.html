@@ -1,7 +1,12 @@
 <div class="products-container" *ngIf="state$ | async as state">
   <h1>Products</h1>
 
-  <div class="search-container">
+  <div class="option-container">
+    <button mat-raised-button color="primary" (click)="openProductDialog('')">
+      <mat-icon>add</mat-icon>
+      <span>ADD PRODUCT</span>
+    </button>
+
     <app-search-input
       (searchChanges)="searchProducts($event)"
     ></app-search-input>
