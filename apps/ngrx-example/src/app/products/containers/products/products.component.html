@@ -7,10 +7,7 @@
     ></app-search-input>
   </div>
 
-  <div
-    class="table-container"
-    [class.hidden]="(!state.total && state.loaded) || state.loading"
-  >
+  <div class="table-container" [class.hidden]="!state.total || state.loading">
     <app-products-table
       [pageIndex]="(pageIndex$ | async) ?? 0"
       [products]="state.products"
