@@ -1,6 +1,11 @@
-.toolbar-container {
+mat-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 3em;
+  min-height: 64px;
+  padding: 0;
+
+  button {
+    height: 100%;
+  }
 }

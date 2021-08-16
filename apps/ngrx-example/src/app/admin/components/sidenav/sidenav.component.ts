@@ -4,8 +4,6 @@ import { Link } from '../../interfaces/link.interface';
 @Component({
   selector: 'sidenav',
   template: `
-    <div>somelogo</div>
-
     <div class="links-container">
       <a
         *ngFor="let link of links"

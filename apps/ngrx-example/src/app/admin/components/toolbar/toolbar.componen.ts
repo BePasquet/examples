@@ -8,12 +8,12 @@ import {
 @Component({
   selector: 'toolbar',
   template: `
-    <mat-toolbar color="primary" class="toolbar-container">
-      <button mat-icon-button (click)="toggleSidenav.emit()">
+    <mat-toolbar color="primary" class="mat-elevation-z9">
+      <button mat-button (click)="toggleSidenav.emit()">
         <mat-icon>menu</mat-icon>
       </button>
 
-      <button mat-icon-button>
+      <button mat-button>
         <mat-icon>account_circle</mat-icon>
       </button>
     </mat-toolbar>
