@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SIDENAV_LINKS } from '../const/sidenav-links.const';
 
 @Component({
   selector: 'admin',
@@ -6,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./admin.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminComponent {}
+export class AdminComponent {
+  readonly sidenavLinks = SIDENAV_LINKS;
+}

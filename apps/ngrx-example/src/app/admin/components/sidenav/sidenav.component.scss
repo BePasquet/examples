@@ -1,0 +1,23 @@
+.links-container {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 0;
+    padding: 0.4em;
+
+    mat-icon {
+      margin-right: 0.4em;
+    }
+
+    &.active {
+      background-color: #3f51b5;
+      color: #fff;
+    }
+  }
+}

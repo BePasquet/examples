@@ -1,6 +1,11 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav class="sidenav" #sidenav mode="side" opened> links </mat-sidenav>
+  <mat-sidenav class="sidenav" #sidenav mode="side" opened>
+    <sidenav [links]="sidenavLinks"></sidenav>
+  </mat-sidenav>
+
   <mat-sidenav-content class="sidenav-content">
+    <toolbar (toggleSidenav)="sidenav.toggle()"></toolbar>
+
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
