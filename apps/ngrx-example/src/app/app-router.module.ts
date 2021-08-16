@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./products/products.module').then((ref) => ref.ProductsModule),
+      import('./admin/admin.module').then((ref) => ref.AdminModule),
   },
   {
     canActivate: [NonAuthenticatedGuard],
