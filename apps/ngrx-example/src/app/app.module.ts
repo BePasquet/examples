@@ -10,6 +10,7 @@ import { AppRouterModule } from './app-router.module';
 import { AppComponent } from './app.component';
 import { AuthenticationProviderModule } from './authentication';
 import { LayoutModule } from './layout';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,12 @@ import { LayoutModule } from './layout';
     AppRouterModule,
     LayoutModule,
     AuthenticationProviderModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   bootstrap: [AppComponent],
 })
